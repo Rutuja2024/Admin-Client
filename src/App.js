@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { Admin, Resource } from 'react-admin';
+import simpleRestProvider from 'ra-data-simple-rest';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+import { PostList } from './components/user';
+import{EditUser} from './components/EditUser';
+import{CreateUser} from './components/CreateUser';
+
+
+
+const App = () => (
+
+    <Admin dataProvider={simpleRestProvider('http://localhost:3000')}>
+        <Resource name="user" list={PostList} 
+        create={CreateUser} edit={EditUser}  />
+    </Admin>
+);
 
 export default App;
